@@ -1,7 +1,6 @@
 #!/usr/bin/python
 from optparse import OptionParser
 import os
-import operator
 
 def human(siz):
     j = 0
