@@ -17,7 +17,11 @@ def human(siz):
 
 def manual():
     #Manual
-    print("Don't forget to write a manual...")
+    print("Lists the contents of a selected directory. Note that the types only function properly on a Linux machine.")
+    print("Available options:")
+    print("-d[directory]: required. Both absolute paths and paths relative to the current working directory are acceptable. However, using bash shortcuts such as ~user does not function correctly.")
+    print("-a: Sorts by size in ascending order. By default, this program sorts by size in descending order.")
+    print("-t: Sorts by type. If both this and -a are selected, -a is ignored")
     quit()
 
 def whatTypeAmI(path):
@@ -47,9 +51,9 @@ def printDir(direct):
     quit()
 
 p = OptionParser()
-p.add_option("-d", "--directory", type="string", action="store", dest="filename",default="/dev/null")
-p.add_option("-a", "--ascending", action="store_false", dest="descending",default=True)
-p.add_option("-t", "--type", action="store_true", dest="typee", default=False)
+p.add_option("-d", type="string", action="store", dest="filename",default="/dev/null")
+p.add_option("-a", action="store_false", dest="descending",default=True)
+p.add_option("-t", action="store_true", dest="typee", default=False)
 p.add_option("-r", action="store_false", dest="notroot", default=True)
 (options, args) = p.parse_args()
 
@@ -62,4 +66,4 @@ if (options.filename == "/dev/null"):
 if (os.path.isdir(options.filename)):
     printDir(options.filename)
 else:
-    print("Directory does not exist.")
+    print("Directory does not exist. For help, enter no flags at the command line.")
