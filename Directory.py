@@ -20,7 +20,7 @@ def human(siz):
 
 def manual():
     #Manual
-    print("Lists the contents of a selected directory. Note that the types only function properly on a Linux machine.")
+    print("Lists the contents of a selected directory.")
     print("Available options:")
     print("-d[directory]: required. Both absolute paths and paths relative to the current working directory are acceptable.")
     print("-a: Sorts by size in ascending order. By default, this program sorts by size in descending order.")
