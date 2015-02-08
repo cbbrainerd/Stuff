@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import operator
 from optparse import OptionParser
 import os
