@@ -25,7 +25,7 @@ def manual():
     print("-a: Sorts by size in ascending order. By default, this program sorts by size in descending order.")
     print("-t: Sorts by type. If both this and -a are selected, -a is ignored.")
     print("-r: Run as root. Requires root privileges.")
-    quit()
+    raise SystemExit
 
 def whatTypeAmI(path):
     if (os.path.islink(path)):
@@ -46,7 +46,7 @@ def whatSizeAmI(path):
 def printDir(direct):
     if(not (os.path.isdir(direct))):
         print "Requested directory \""+direct+"\" is not a valid directory. If you need help, run this command with no flags to see the help file."
-        quit()
+        raise SystemExit
     #Print directory
     a= os.listdir(direct)
     if (options.typee):
@@ -61,7 +61,7 @@ def printDir(direct):
             size[i] = whatSizeAmI(direct+"/"+i)
         for x in sorted(size, key=size.get, reverse=options.descending):
             print x, human(size[x]), whatTypeAmI(direct+"/"+x)
-    quit()
+    raise SystemExit
 
 p = OptionParser()
 p.add_option("-d", type="string", action="store", dest="filename",default="")
@@ -73,11 +73,11 @@ p.add_option("-r", action="store_false", dest="notroot", default=True)
 if ((os.geteuid() == 0) and options.notroot):
     print "Why are you running this as root?"
     print "If you meant to do this as root, please run with the flag -r."
-    quit()
+    raise SystemExit
 if ((os.geteuid() != 0) and not options.notroot):
     print "This requires root privileges."
     print "Please run as root or run without the -r flag."
-    quit()
+    raise SystemExit
 if (len(options.filename) == 0):
     manual()
 if (options.filename[0] == "~"):
