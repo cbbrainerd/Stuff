@@ -91,6 +91,6 @@ if (options.filename[0] == "~"):
             printDir("/home/"+userhome[0]+"/"+options.filename.split("/",1)[1])
         else:
             printDir("/home/"+userhome[0])
-while (options.filename[-1] == "/"):
+while ((options.filename[-1] == "/") and (len(options.filename) > 1)):
     printDir(options.filename[:-1])
 printDir(options.filename)
